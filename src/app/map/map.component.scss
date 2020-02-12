@@ -1,0 +1,50 @@
+#mapTest {
+  height: 100vh;
+}
+
+::ng-deep {
+  .leaflet-popup-content-wrapper {
+  }
+
+  .leaflet-popup-content{
+    width: max-content !important;;
+  }
+
+  .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+    bottom: 12px !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 8px 16px;
+    color: #000000b3;
+    .heading {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .detail {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .mask-detail-wrap {
+    display: flex;
+    .mask-adult,
+    .mask-child {
+      flex: 1;
+      border-radius: 24px;
+      font-size: 14px;
+      text-align: center;
+      padding: 7px 0;
+    }
+
+    .mask-adult {
+      background: #f3cc9a;
+      margin-right: 8px;
+    }
+
+    .mask-child {
+      background: #b1e5bb;
+    }
+  }
+}

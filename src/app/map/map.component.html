@@ -1,0 +1,8 @@
+<div id="mapTest"
+     leaflet
+     [leafletOptions]="options"
+     [leafletMarkerCluster]="markerClusterData"
+     [leafletMarkerClusterOptions]="markerClusterOptions"
+     (leafletMapReady)="onMapReady($event)"
+     (leafletMarkerClusterReady)="markerClusterReady($event)">
+</div>
