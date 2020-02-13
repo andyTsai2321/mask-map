@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MaskService } from './service/mask.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(public maskService: MaskService) { }
+
   title = 'mask-map';
+
+  goNews(){
+    window.open(
+      'https://www.cdc.gov.tw/Bulletin/List/MmgtpeidAR5Ooai4-fgHzQ',
+      '_blank'
+    );
+  }
 }

@@ -28,13 +28,16 @@ export class MapComponent implements OnInit {
   markerClusterGroup: L.MarkerClusterGroup;
   markerClusterData: L.Marker[] = [];
   markerClusterOptions: L.MarkerClusterGroupOptions;
-
+  autoTimer;
   constructor(private maskService: MaskService) {
-    this.maskService.getMaskApi()
+    this.getMaskData()
+  }
+
+  getMaskData() {
+    this.maskService.getMaskServiceData()
       .subscribe(res => {
         this.allData = res['features'];
-        // console.log(this.allData);
-        this.getUserLocation();
+        this.generateData();
       },
         (error: HttpErrorResponse) => this.maskService.HandleError(error)
       );
@@ -46,11 +49,9 @@ export class MapComponent implements OnInit {
         this.map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
       });
     }
-
-    this.refreshData();
   }
 
-  refreshData() {
+  generateData() {
     this.markerClusterData = this.generateMarker();
   }
 
@@ -74,19 +75,33 @@ export class MapComponent implements OnInit {
               <img src="../assets/images/icons/phone.svg">
                 ${item.properties.phone}
               </div>
-
               <div class="mask-detail-wrap">
                 <span class="mask-adult">成人口罩：${item.properties.mask_adult}</span>
                 <span class="mask-child">小孩口罩：${item.properties.mask_child}</span>
               </div>
-
             `
         ));
 
       }
     });
-
+    this.autoRefresh();
+    this.maskService.loading = false;
     return data;
+  }
+
+  autoRefresh() {
+    // console.log('set auto data refresh ' + new Date())
+    clearTimeout(this.autoTimer);
+    const that = this;
+    this.autoTimer = setTimeout(function () {
+      // that.autoRefresh();
+      that.refreshMaskData();
+      // 10分鐘更新一次
+    }, 600000);
+  }
+
+  refreshMaskData() {
+    this.getMaskData();
   }
 
   onMapReady(map: L.Map) {
@@ -98,7 +113,8 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getUserLocation();
   }
 
 }
+

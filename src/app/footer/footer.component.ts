@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MaskService } from '../service/mask.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  updateTime: number = Date.now();
-
-  constructor() { }
+  constructor(public maskService: MaskService) { }
 
   ngOnInit() {
   }
