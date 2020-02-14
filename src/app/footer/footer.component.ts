@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MaskService } from '../service/mask.service';
+import { MainService } from '../service/main.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +8,7 @@ import { MaskService } from '../service/mask.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public maskService: MaskService) { }
+  constructor(public mainService: MainService) { }
 
   ngOnInit() {
   }

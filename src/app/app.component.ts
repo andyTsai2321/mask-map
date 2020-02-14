@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaskService } from './service/mask.service';
+import { MainService } from './service/main.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { MaskService } from './service/mask.service';
 })
 export class AppComponent {
 
-  constructor(public maskService: MaskService) { }
+  constructor(public mainService: MainService) { }
 
   title = 'mask-map';
 

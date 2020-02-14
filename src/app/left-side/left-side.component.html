@@ -1,8 +1,41 @@
-<!-- <label for="cars">Choose a car:</label> -->
 
-<!-- <select id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select> -->
+<div class="left-side-container">
+
+  <div class="filter-wrap">
+    <input class="search-input" (keyup.enter)="startSearch()"
+      [(ngModel)]="searchValue" type="text">
+    <i class="fas fa-search" (click)="startSearch()"></i>
+    <span class="remind-text">搜尋所在縣市、地址、周遭店家名稱等</span>
+  </div>
+
+
+  <div class="search-result-container">
+    <span *ngIf="errorStr !== ''">{{errorStr}}</span>
+
+    <ng-container *ngFor="let item of resultList">
+      <div class="result-wrap" (click)="goTarget(item.geometry.coordinates[1],item.geometry.coordinates[0])">
+        <div class="title"> {{item.properties.name}} </div>
+
+        <div class="details">
+          <div><i class="fas fa-map-marker-alt"></i> {{item.properties.name}} </div>
+          <div><i class="fas fa-phone-alt"></i> {{item.properties.address}} </div>
+          <div *ngIf="item.properties.note !== '-'"><i class="fas fa-sticky-note"></i> {{item.properties.note}} </div>
+        </div>
+
+        <div class="mask-wrap">
+          <div class="adult-mask-wrap">
+            成人口罩
+            <span class="number">{{item.properties.mask_adult}}</span>
+            個
+          </div>
+          <div class="child-mask-wrap">
+            兒童口罩
+            <span class="number">{{item.properties.mask_child}}</span>
+            個
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+</div>

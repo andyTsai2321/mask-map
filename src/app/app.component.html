@@ -1,5 +1,9 @@
-<app-left-side></app-left-side>
-<app-map></app-map>
+
+<div class="main-view-wrap">
+  <app-left-side></app-left-side>
+  <app-map></app-map>
+</div>
+
 <app-footer></app-footer>
 
 <div class="new-wrap" (click)="goNews()">
@@ -7,6 +11,6 @@
   <span class="news">NEWS</span>
 </div>
 
-<div [hidden]="!maskService.loading">
+<div [hidden]="!mainService.loading">
   <app-loading></app-loading>
 </div>

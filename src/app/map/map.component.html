@@ -1,8 +1,8 @@
-<div id="mapTest"
+<div id="mapWrap"
      leaflet
-     [leafletOptions]="options"
-     [leafletMarkerCluster]="markerClusterData"
-     [leafletMarkerClusterOptions]="markerClusterOptions"
-     (leafletMapReady)="onMapReady($event)"
-     (leafletMarkerClusterReady)="markerClusterReady($event)">
+     [leafletOptions]="mapService.options"
+     [leafletMarkerCluster]="mapService.markerClusterData"
+     [leafletMarkerClusterOptions]="mapService.markerClusterOptions"
+     (leafletMapReady)="mapService.onMapReady($event)"
+     (leafletMarkerClusterReady)="mapService.markerClusterReady($event)">
 </div>

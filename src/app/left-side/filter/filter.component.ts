@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  searchList = [];
+  pharmacyStore = [];
+  searchValue;
+  errorStr;
   constructor() { }
 
   ngOnInit() {
   }
+  startSearch() {
+    if (this.searchValue == '' || !this.searchValue) {
+      this.errorStr = '請輸入你要尋找的區域';
+      return;
+    }
 
+  }
 }

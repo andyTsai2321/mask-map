@@ -29,8 +29,10 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/css/reset.css",
               "./node_modules/leaflet/dist/leaflet.css",
-              "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
+              "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },
@@ -96,8 +98,10 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/css/reset.css",
               "./node_modules/leaflet/dist/leaflet.css",
-              "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css"
+              "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           }

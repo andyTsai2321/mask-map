@@ -4,12 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { MaskService } from './service/mask.service';
+import { MainService } from './service/main.service';
+import { MapService } from './map/map.service';
 import { LeftSideComponent } from './left-side/left-side.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FilterComponent } from './left-side/filter/filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,15 +20,17 @@ import { LoadingComponent } from './loading/loading.component';
     MapComponent,
     LeftSideComponent,
     FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     LeafletModule.forRoot(),
-    LeafletMarkerClusterModule
+    LeafletMarkerClusterModule,
+    FormsModule
   ],
-  providers: [MaskService],
+  providers: [MainService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
