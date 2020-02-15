@@ -17,6 +17,8 @@ export class LeftSideComponent implements OnInit {
   pharmacyStore = [];
   searchValue = '';
   errorStr;
+  maskFilterShow = false;
+  maskOption = '全部';
   onDestroy = new Subject<void>();
 
   constructor(private mainService: MainService, public mapService: MapService) {
@@ -28,8 +30,16 @@ export class LeftSideComponent implements OnInit {
   ngOnInit() {
   }
 
-  startSearch() {
+  maskFilterToggle() {
+    this.maskFilterShow = !this.maskFilterShow;
+  }
 
+  setMaskOption(type) {
+    this.maskOption = type;
+    this.maskFilterShow = false;
+  }
+  startSearch() {
+    this.maskFilterShow = false;
     const result = [];
     this.errorStr = '';
     const cleanValue = this.searchValue.trim();
@@ -41,7 +51,15 @@ export class LeftSideComponent implements OnInit {
     this.allMaskData.forEach(item => {
       if (item.properties.address.includes(cleanValue) ||
         item.properties.name.includes(cleanValue)) {
-        result.push(item);
+        if (this.maskOption === '全部') {
+          result.push(item);
+        }
+        if (item.properties.mask_child !== 0 && this.maskOption === '兒童口罩') {
+          result.push(item);
+        }
+        if (item.properties.mask_adult !== 0 && this.maskOption === '成人口罩') {
+          result.push(item);
+        }
       }
     });
 

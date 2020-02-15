@@ -8,13 +8,29 @@
       <i class="fas fa-search" (click)="startSearch()"></i>
     </div>
     <span class="remind-text">搜尋所在縣市、地址、藥局名稱</span>
+
+    <div class="mask-filter-wrap dropdown">
+      <span>需求口罩選擇：</span>
+      <div class="mask-filter">
+        <div (click)="maskFilterToggle()" class="dropbtn">
+          {{maskOption}}
+          <i class="fas fa-sort-down"></i>
+        </div>
+        <div *ngIf="maskFilterShow" class="dropdown-content">
+          <div *ngIf="maskOption !== '全部'" (click)="setMaskOption('全部')">全部</div>
+          <div *ngIf="maskOption !== '成人口罩'" (click)="setMaskOption('成人口罩')">成人口罩</div>
+          <div *ngIf="maskOption !== '兒童口罩'" (click)="setMaskOption('兒童口罩')">兒童口罩</div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
   <div class="search-result-container">
 
     <div class="w100 text-align-center" *ngIf="errorStr !== ''">{{errorStr}}</div>
-    <div class="w100 text-align-center" *ngIf="resultList.length !== 0"> 共{{resultList.length}}筆結果 </div>
+    <div class="w100 text-align-center" *ngIf="resultList.length !== 0">
+      共{{resultList.length}}筆結果 </div>
 
     <ng-container *ngFor="let item of resultList">
       <div class="result-wrap"
