@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { latLng, tileLayer } from 'leaflet';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import { MainService } from '../service/main.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class MapService {
 
   options = {
     layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
       })
     ],
@@ -23,7 +24,7 @@ export class MapService {
   markerClusterData: L.Marker[] = [];
   markerClusterOptions: L.MarkerClusterGroupOptions;
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   generateData(maskData) {
     this.markerClusterData = this.generateMarker(maskData);
@@ -33,7 +34,7 @@ export class MapService {
     const data: L.Marker[] = [];
     const icon = L.icon({
       iconSize: [48, 61],
-      iconUrl: '../assets/images/icons/maker.svg',
+      iconUrl: 'assets/images/icons/maker.svg',
     });
 
     maskData.forEach(item => {
@@ -41,11 +42,11 @@ export class MapService {
         `
             <div class="heading">${item.properties.name}</div>
             <div class="detail">
-              <img src="../assets/images/icons/map-marker-alt-solid.svg">
+              <img src="assets/images/icons/map-marker-alt-solid.svg">
               ${item.properties.address}
             </div>
             <div class="detail">
-            <img src="../assets/images/icons/phone.svg">
+            <img src="assets/images/icons/phone.svg">
               ${item.properties.phone}
             </div>
             <div class="mask-detail-wrap">
@@ -55,6 +56,7 @@ export class MapService {
           `
       ));
     });
+    this.mainService.loading = false;
     return data;
   }
 

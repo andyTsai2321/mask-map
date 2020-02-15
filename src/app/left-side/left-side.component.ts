@@ -15,7 +15,7 @@ export class LeftSideComponent implements OnInit {
   allMaskData;
   resultList = [];
   pharmacyStore = [];
-  searchValue;
+  searchValue = '';
   errorStr;
   onDestroy = new Subject<void>();
 
@@ -32,17 +32,23 @@ export class LeftSideComponent implements OnInit {
 
     const result = [];
     this.errorStr = '';
-    if (this.searchValue == '' || !this.searchValue) {
+    const cleanValue = this.searchValue.trim();
+    if (cleanValue === '') {
       this.errorStr = '請輸入你要尋找的區域';
       return;
     }
 
     this.allMaskData.forEach(item => {
-      if (item.properties.address.indexOf(this.searchValue.trim()) != -1) {
+      if (item.properties.address.includes(cleanValue) ||
+        item.properties.name.includes(cleanValue)) {
         result.push(item);
       }
     });
 
+    if (result.length === 0) {
+      this.errorStr = '查無資料';
+      return;
+    }
     this.resultList = result;
   }
 

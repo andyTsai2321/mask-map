@@ -20,7 +20,6 @@ export class MapComponent implements OnInit {
     this.mainService.data$.pipe(takeUntil(this.onDestroy)).subscribe(res => {
       this.allMaskData = res;
       this.mapService.generateData(res);
-      this.mainService.loading = false;
     });
   }
 

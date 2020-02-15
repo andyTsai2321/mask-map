@@ -11,7 +11,6 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
-import { FilterComponent } from './left-side/filter/filter.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { FormsModule } from '@angular/forms';
     MapComponent,
     LeftSideComponent,
     FooterComponent,
-    LoadingComponent,
-    FilterComponent
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -36,6 +36,14 @@ app-left-side{
   width: 40%;
 }
 
+.text-align-center{
+  text-align: center;
+}
+
+.w100{
+  width: 100%;
+}
+
 @media (max-width: 767px)  {
   app-left-side{
     display: none;
