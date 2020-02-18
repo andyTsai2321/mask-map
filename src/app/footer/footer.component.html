@@ -1,10 +1,18 @@
 <footer>
   <div class="footer-wrap">
     <div>
-      資料更新時間 {{ mainService.updateTime | date:'MMM d, y, h:mm:ss a'}}
+      資料更新時間
+      <ng-container *ngIf="mainService.isMobile; else fullTime">
+        {{ mainService.updateTime | date:'h:mm:ss a'}}
+      </ng-container>
+
+      <ng-template #fullTime>
+        {{ mainService.updateTime | date:'MMM d, y, h:mm:ss a'}}
+      </ng-template>
+
     </div>
     <div>
-      © 2020 Andy Tsai 口罩地圖 All Rights Reserved.
+      Andy Tsai 口罩地圖
     </div>
   </div>
 </footer>

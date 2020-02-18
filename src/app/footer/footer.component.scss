@@ -17,3 +17,11 @@ footer {
     padding: 0 50px;
   }
 }
+
+@media (max-width: 600px) {
+  footer{
+    position: fixed;
+    top: 0;
+    bottom: initial;
+  }
+}

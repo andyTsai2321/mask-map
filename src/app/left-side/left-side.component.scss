@@ -3,7 +3,6 @@
 .left-side-container {
   width: 100%;
   height: 100vh;
-  background: #f2f9fd;
   z-index: 450;
   overflow: hidden;
   color: #000000b3;
@@ -13,6 +12,7 @@
   position: relative;
   margin-bottom: 8px;
   padding: 24px 20px;
+  background: #f2f9fd;
   .search-input {
     width: 100%;
     border-radius: 28px;
@@ -115,7 +115,7 @@
   .mask-filter {
     position: relative;
   }
-  .fa-sort-down{
+  .fa-sort-down {
     position: absolute;
     top: 1px;
     right: 9px;
@@ -140,9 +140,41 @@
       align-items: center;
       height: 27px;
       &:hover {
-        background: #ECEAEA;
-        transition: .3s;
+        background: #eceaea;
+        transition: all 0.3s;
       }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .left-side-container {
+    height: 90vh;
+    overflow: auto;
+    border-radius: 25px 25px 0 0;
+  }
+  .search-result-container {
+    height: auto;
+    padding-bottom: 0;
+    padding-top: 160px;
+    height: 100%;
+    background: #fff;
+  }
+  .filter-wrap {
+    position: fixed;
+    border-radius: 25px 25px 0 0;
+    padding: 0 20px;
+    width: 100%;
+    z-index: 1024;
+    background: #fff;
+  }
+  .toggle-wrap{
+    padding: 15px 0;
+    .toggle-button{
+      border: 4px solid #808080;
+      border-radius: 25px;
+      width: 30%;
+      margin: 0 auto;
     }
   }
 }

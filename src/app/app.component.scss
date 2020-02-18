@@ -1,5 +1,3 @@
-
-
 $font-size32: 1.66vw;
 $font-size20: 1.04vw;
 $font-size24: 1.25vw;
@@ -24,28 +22,46 @@ $font-size16: 0.83vw;
   }
 }
 
-.main-view-wrap{
+.main-view-wrap {
   display: flex;
+  position: relative;
 }
 
-app-map{
+app-map {
   width: 100%;
 }
 
-app-left-side{
+app-left-side {
   width: 40%;
 }
 
-.text-align-center{
+.text-align-center {
   text-align: center;
 }
 
-.w100{
+.w100 {
   width: 100%;
 }
 
-@media (max-width: 767px)  {
-  app-left-side{
+.left-side-hide {
+  bottom: -76%;
+}
+.left-side-open {
+  bottom: 0;
+}
+@media (max-width: 600px) {
+  app-map {
+    width: 100%;
+  }
+  app-left-side {
+    width: 100%;
+    bottom: -76%;
+    position: fixed;
+    z-index: 450;
+    left: 0;
+    transition: all 0.3s;
+  }
+  .new-wrap {
     display: none;
   }
 }

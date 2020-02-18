@@ -10,14 +10,22 @@ export class MainService {
 
   private data = new BehaviorSubject([]);
   data$ = this.data.asObservable();
+  isMobile: boolean;
+  leftSideOpen: boolean;
 
   autoTimer;
 
   updateTime = Date.now();
-  loading: boolean;
+  loading = false;
 
   constructor(private http: HttpClient) {
     this.getData();
+
+    if (document.body.clientWidth < 600) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
   }
 
   getData() {

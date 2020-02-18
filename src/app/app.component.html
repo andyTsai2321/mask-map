@@ -1,6 +1,6 @@
 
 <div class="main-view-wrap">
-  <app-left-side></app-left-side>
+  <app-left-side [ngClass]="{'left-side-open': mainService.leftSideOpen, 'left-side-hide': !mainService.leftSideOpen}"></app-left-side>
   <app-map></app-map>
 </div>
 

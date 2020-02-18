@@ -5,12 +5,12 @@
 ::ng-deep {
   .leaflet-popup-content-wrapper {
   }
-  .leaflet-top.leaflet-left{
+  .leaflet-top.leaflet-left {
     display: none;
   }
 
-  .leaflet-popup-content{
-    width: max-content !important;;
+  .leaflet-popup-content {
+    width: max-content !important;
   }
 
   .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
@@ -49,5 +49,32 @@
     .mask-child {
       background: #b1e5bb;
     }
+  }
+  .leaflet-marker-icon.leaflet-interactive {
+    color: #10666a;
+  }
+  .marker-cluster-small {
+    // background-color: #B1FBFF !important;
+    background-color: rgba(177, 251, 255, 0.7) !important;
+  }
+  .marker-cluster-small div {
+    // background-color: #B1FBFF !important;
+    background-color: rgba(177, 251, 255) !important;
+  }
+  .marker-cluster-medium {
+    // background-color: #40F6FF !important;
+    background-color: rgba(64, 246, 255, 0.7) !important;
+  }
+  .marker-cluster-medium div {
+    // background-color: #40F6FF !important;
+    background-color: rgba(64, 246, 255) !important;
+  }
+  .marker-cluster-large {
+    // background-color: #00D4DF !important;
+    background-color: rgba(0, 212, 223, 0.7) !important;
+  }
+  .marker-cluster-large div {
+    // background-color: #00D4DF !important;
+    background-color: rgba(0, 212, 223) !important;
   }
 }

@@ -12,10 +12,11 @@ export class AppComponent {
 
   title = 'mask-map';
 
-  goNews(){
+  goNews() {
     window.open(
       'https://www.cdc.gov.tw/Bulletin/List/MmgtpeidAR5Ooai4-fgHzQ',
       '_blank'
     );
   }
+
 }

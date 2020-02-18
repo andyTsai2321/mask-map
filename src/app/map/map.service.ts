@@ -33,8 +33,8 @@ export class MapService {
   generateMarker(maskData): L.Marker[] {
     const data: L.Marker[] = [];
     const icon = L.icon({
-      iconSize: [48, 61],
-      iconUrl: 'assets/images/icons/maker.svg',
+      iconSize: [40, 50],
+      iconUrl: 'assets/images/icons/maps-and-flags.svg',
     });
 
     maskData.forEach(item => {
@@ -56,7 +56,6 @@ export class MapService {
           `
       ));
     });
-    this.mainService.loading = false;
     return data;
   }
 
@@ -70,7 +69,10 @@ export class MapService {
 
   changeLocation(lat, lng) {
     this.map.panTo(new L.LatLng(lat, lng));
-    this.map.setView([lat, lng], 22)
+    this.map.setView([lat, lng], 22);
+    if (this.mainService.isMobile) {
+      this.mainService.leftSideOpen = false;
+    }
   }
 
   onMapReady(map: L.Map) {
