@@ -149,7 +149,7 @@
 
 @media (max-width: 600px) {
   .left-side-container {
-    height: 90vh;
+    height: 80vh;
     overflow: auto;
     border-radius: 25px 25px 0 0;
   }
@@ -177,4 +177,27 @@
       margin: 0 auto;
     }
   }
+
+  .result-wrap {
+    padding: 24px 20px;
+    background: #fff;
+    .title {
+      font-size: 16px;
+    }
+    .details {
+      > div {
+        font-size: 14px;
+      }
+    }
+  }
+  .mask-wrap {
+    .adult-mask-wrap,
+    .child-mask-wrap {
+      font-size: 14px;
+    }
+    .number {
+      font-size: 22px;
+    }
+  }
+
 }
