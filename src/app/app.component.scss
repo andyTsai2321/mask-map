@@ -43,23 +43,47 @@ app-left-side {
   width: 100%;
 }
 
-.left-side-hide {
-  bottom: -76%;
+.float-functions{
+  display: none;
+  .float-functions-wrap{
+    width: 60px;
+    height: 60px;
+    background:  #00D4DF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+  }
 }
-.left-side-open {
-  bottom: 0;
-}
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .left-side-hide {
+    transform: translateY(100%);
+  }
+  .left-side-open {
+    transform: translateY(0);
+  }
+  .float-functions{
+    display: block;
+    position: absolute;
+    bottom: 56px;
+    right: 19px;
+    display: flex;
+    z-index: 450;
+    .float-functions-wrap{
+      &:not(:last-child){
+        margin-right: 10px;
+      }
+    }
+  }
   app-map {
     width: 100%;
   }
   app-left-side {
     width: 100%;
-    bottom: -76%;
-    position: fixed;
-    z-index: 450;
-    left: 0;
-    transition: all 0.3s;
+    position: absolute;
+    transition: ease-out .3s;
+    z-index: 999;
   }
   .new-wrap {
     display: none;

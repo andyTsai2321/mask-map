@@ -19,4 +19,12 @@ export class AppComponent {
     );
   }
 
+  onResize(event) {
+    if (event.target.innerWidth < 1024) {
+      this.mainService.isMobile = true;
+    } else {
+      this.mainService.isMobile = false;
+    }
+  }
+
 }

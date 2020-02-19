@@ -1,10 +1,19 @@
 
-<div class="main-view-wrap">
+<div class="main-view-wrap" (window:resize)="onResize($event)">
   <app-left-side [ngClass]="{'left-side-open': mainService.leftSideOpen, 'left-side-hide': !mainService.leftSideOpen}"></app-left-side>
   <app-map></app-map>
 </div>
 
 <app-footer></app-footer>
+
+<div class="float-functions">
+  <div class="float-functions-wrap" (click)="mainService.toggleLeftSide()">
+    <i class="fas fa-search"></i>
+  </div>
+  <div class="float-functions-wrap" (click)="goNews()">
+    <i class="far fa-newspaper"></i>
+  </div>
+</div>
 
 <div class="new-wrap" (click)="goNews()">
   <img src="assets/images/icons/chat.svg" alt="">

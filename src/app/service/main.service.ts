@@ -20,8 +20,7 @@ export class MainService {
 
   constructor(private http: HttpClient) {
     this.getData();
-
-    if (document.body.clientWidth < 600) {
+    if (document.body.clientWidth < 1024) {
       this.isMobile = true;
     } else {
       this.isMobile = false;
@@ -51,6 +50,12 @@ export class MainService {
 
   refreshMaskData() {
     this.getData();
+  }
+
+  toggleLeftSide() {
+    if (this.isMobile) {
+      this.leftSideOpen = !this.leftSideOpen;
+    }
   }
 
   HandleError(e: any): void {

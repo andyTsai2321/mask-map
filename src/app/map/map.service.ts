@@ -53,6 +53,9 @@ export class MapService {
               <span class="mask-adult">成人口罩：${item.properties.mask_adult}</span>
               <span class="mask-child">小孩口罩：${item.properties.mask_child}</span>
             </div>
+            <div class="detail update-time">
+              此資料更新時間：${item.properties.updated}
+            </div>
           `
       ));
     });

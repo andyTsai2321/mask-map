@@ -1,16 +1,19 @@
 
 <div class="left-side-container">
-
   <div class="filter-wrap">
-    <div class="toggle-wrap" (click)="toggleLeftSide()">
-      <div *ngIf="mainService.isMobile" class="toggle-button"></div>
+    <div class="search-input-container">
+      <div class="search-input-wrap">
+        <input class="search-input" (keyup.enter)="startSearch()"
+          [(ngModel)]="searchValue"
+          placeholder="搜尋縣市、地址、藥局名等" type="text">
+        <i class="fas fa-search" (click)="startSearch()"></i>
+      </div>
+      <div *ngIf="mainService.isMobile" class="leftSide-close" (click)="mainService.toggleLeftSide()">
+        <i class="fas fa-times"></i>
+      </div>
     </div>
-    <div class="search-input-wrap">
-      <input class="search-input" (keyup.enter)="startSearch()"
-        [(ngModel)]="searchValue"
-        placeholder="搜尋縣市、地址、藥局名等" type="text">
-      <i class="fas fa-search" (click)="startSearch()"></i>
-    </div>
+
+
     <!-- <span class="remind-text">搜尋所在縣市、地址、藥局名稱</span> -->
 
     <div class="mask-filter-wrap dropdown">

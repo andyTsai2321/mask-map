@@ -19,10 +19,5 @@ footer {
   }
 }
 
-@media (max-width: 600px) {
-  footer{
-    position: fixed;
-    top: 0;
-    bottom: initial;
-  }
+@media (max-width: 1024px) {
 }

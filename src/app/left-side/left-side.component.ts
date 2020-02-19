@@ -74,12 +74,6 @@ export class LeftSideComponent implements OnInit {
   goTarget(lat, lng) {
     this.mapService.changeLocation(lat, lng);
   }
-  toggleLeftSide() {
-    if (this.mainService.isMobile) {
-      this.mainService.leftSideOpen = !this.mainService.leftSideOpen;
-
-    }
-  }
   ngOnDestroy() {
     this.onDestroy.next();
     this.onDestroy.unsubscribe();
