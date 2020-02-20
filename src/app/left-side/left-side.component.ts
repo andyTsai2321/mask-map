@@ -47,7 +47,8 @@ export class LeftSideComponent implements OnInit {
     this.maskFilterShow = false;
   }
   startSearch() {
-    this.mainService.loading = true;
+    this.resultList = [];
+    this.currentList = 'all';
     this.maskFilterShow = false;
     const result = [];
     this.errorStr = '';
@@ -77,7 +78,6 @@ export class LeftSideComponent implements OnInit {
       return;
     }
     this.resultList = result;
-    this.mainService.loading = false;
   }
 
   goTarget(lat, lng) {
@@ -102,11 +102,13 @@ export class LeftSideComponent implements OnInit {
     }
   }
 
-  toggleFavoriteList(){
+  toggleFavoriteList() {
     if (this.currentList === 'favorite') {
       this.currentList = 'all';
+      this.errorStr = '';
     } else {
       this.currentList = 'favorite';
+      this.favoriteList.length === 0 ? this.errorStr = '無關注的藥局' : this.errorStr = '';
     }
   }
 
