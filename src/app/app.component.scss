@@ -25,6 +25,7 @@ $font-size16: 0.83vw;
 .main-view-wrap {
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 app-map {
