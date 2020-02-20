@@ -10,27 +10,24 @@ export class MainService {
 
   private data = new BehaviorSubject([]);
   data$ = this.data.asObservable();
+
+  private saveFavorite = new BehaviorSubject([]);
+  saveFavorite$ = this.saveFavorite.asObservable();
+
   isMobile: boolean;
   leftSideOpen: boolean;
 
   autoTimer;
 
   updateTime = Date.now();
-  loading = false;
+  loading = true;
 
-  constructor(private http: HttpClient) {
-    this.getData();
-    if (document.body.clientWidth < 1024) {
-      this.isMobile = true;
-    } else {
-      this.isMobile = false;
-    }
-  }
+  constructor(private http: HttpClient) { }
 
   getData() {
     this.http.get(this.maskUrl).subscribe(res => {
-      this.updateTime = Date.now();
       this.loading = true;
+      this.updateTime = Date.now();
       this.data.next(res['features']);
       this.autoRefresh();
     },
@@ -57,6 +54,70 @@ export class MainService {
       this.leftSideOpen = !this.leftSideOpen;
     }
   }
+
+
+  // favorite cookie start
+  getFavoriteCookie() {
+    let tmp;
+    tmp = this.getCookie('Favorite_');
+    const arr = tmp.split('@');
+    const newArray = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      const key = arr[i];
+      if (key) {
+        newArray.push(key);
+      }
+    }
+    this.saveFavorite.next(newArray);
+  }
+
+  getCookie(name) {
+    let saveName = name + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(saveName) === 0) {
+        return c.substring(saveName.length, c.length);
+      }
+    }
+    return '';
+  }
+
+  setCookie(key, value) {
+    document.cookie = key + '=' + value;
+  }
+
+  updateFavorite(id) {
+    const favoriteArray = this.saveFavorite.value;
+
+    if (!favoriteArray.includes(id)) {
+      favoriteArray.push(id);
+      this.saveFavorite.next(favoriteArray);
+      this.updateFavoriteCookie();
+    }
+  }
+
+  updateFavoriteCookie() {
+    let str = '';
+    this.saveFavorite.value.forEach((item) => {
+      str += item + '@';
+    });
+    this.setCookie('Favorite_', str);
+  }
+
+  removeFavorite(index, id) {
+    const favoriteArray = this.saveFavorite.value;
+    if (favoriteArray.includes(id)) {
+      this.saveFavorite.value.splice(index, 1);
+      this.saveFavorite.next(favoriteArray);
+      this.updateFavoriteCookie();
+    }
+  }
+  // favorite cookie end
 
   HandleError(e: any): void {
     this.loading = false;

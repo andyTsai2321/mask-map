@@ -19,12 +19,19 @@ export class LeftSideComponent implements OnInit {
   errorStr;
   maskFilterShow = false;
   maskOption = '全部';
+  favoriteList;
+  allFavoriteList;
+
+  currentList = 'all';
 
   onDestroy = new Subject<void>();
 
   constructor(public mainService: MainService, public mapService: MapService) {
     this.mainService.data$.pipe(takeUntil(this.onDestroy)).subscribe(res => {
       this.allMaskData = res;
+    });
+    this.mainService.saveFavorite$.pipe(takeUntil(this.onDestroy)).subscribe(res => {
+      this.favoriteList = res;
     });
   }
 
@@ -40,6 +47,7 @@ export class LeftSideComponent implements OnInit {
     this.maskFilterShow = false;
   }
   startSearch() {
+    this.mainService.loading = true;
     this.maskFilterShow = false;
     const result = [];
     this.errorStr = '';
@@ -69,11 +77,44 @@ export class LeftSideComponent implements OnInit {
       return;
     }
     this.resultList = result;
+    this.mainService.loading = false;
   }
 
   goTarget(lat, lng) {
     this.mapService.changeLocation(lat, lng);
   }
+  toggleFavorite(id) {
+    event.stopPropagation();
+    const index = this.favoriteList.indexOf(id);
+    if (index === -1) {
+      this.mainService.updateFavorite(id);
+    } else {
+      this.mainService.removeFavorite(index, id);
+    }
+  }
+
+  favoriteCheck(id) {
+
+    if (this.favoriteList.includes(id)) {
+      return 'fas fa-star';
+    } else {
+      return 'far fa-star';
+    }
+  }
+
+  toggleFavoriteList(){
+    if (this.currentList === 'favorite') {
+      this.currentList = 'all';
+    } else {
+      this.currentList = 'favorite';
+    }
+  }
+
+  showFavorite() {
+    this.allFavoriteList = this.allMaskData.filter(v => this.favoriteList.includes(v.properties.id));
+    this.toggleFavoriteList();
+  }
+
   ngOnDestroy() {
     this.onDestroy.next();
     this.onDestroy.unsubscribe();

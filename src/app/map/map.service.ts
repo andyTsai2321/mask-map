@@ -26,7 +26,7 @@ export class MapService {
 
   constructor(private mainService: MainService) { }
 
-  generateData(maskData) {
+    generateData(maskData) {
     this.markerClusterData = this.generateMarker(maskData);
   }
 
@@ -85,4 +85,5 @@ export class MapService {
   markerClusterReady(group: L.MarkerClusterGroup) {
     this.markerClusterGroup = group;
   }
+
 }

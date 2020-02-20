@@ -10,6 +10,16 @@ export class AppComponent {
 
   constructor(public mainService: MainService) { }
 
+  ngOnInit(): void {
+    this.mainService.getFavoriteCookie()
+    this.mainService.getData();
+    if (document.body.clientWidth < 1024) {
+      this.mainService.isMobile = true;
+    } else {
+      this.mainService.isMobile = false;
+    }
+  }
+
   title = 'mask-map';
 
   goNews() {

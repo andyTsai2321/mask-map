@@ -42,6 +42,13 @@
 .result-wrap {
   padding: 25px 0;
   cursor: pointer;
+  .result-star{
+    color: #000000b3;
+  }
+}
+
+.favorite-heading{
+  margin: 5px 0 10px 0;
 }
 
 .result-wrap {
@@ -150,6 +157,20 @@
 .leftSide-close{
   font-size: 35px;
   z-index: 450;
+}
+
+.my-favorite{
+  font-size: 20px;
+  margin-right: 10px;
+  color: rgb(227, 220, 97);
+  background: #fff;
+  padding: 6px;
+  border: 1px solid #afafaf;
+  border-radius: 9px;
+  &.active{
+    color: #fff;
+    background: rgb(227, 220, 97);
+  }
 }
 
 @media (max-width: 1024px) {

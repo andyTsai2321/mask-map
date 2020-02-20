@@ -8,7 +8,8 @@
           placeholder="搜尋縣市、地址、藥局名等" type="text">
         <i class="fas fa-search" (click)="startSearch()"></i>
       </div>
-      <div *ngIf="mainService.isMobile" class="leftSide-close" (click)="mainService.toggleLeftSide()">
+      <div *ngIf="mainService.isMobile" class="leftSide-close"
+        (click)="mainService.toggleLeftSide()">
         <i class="fas fa-times"></i>
       </div>
     </div>
@@ -17,6 +18,9 @@
     <!-- <span class="remind-text">搜尋所在縣市、地址、藥局名稱</span> -->
 
     <div class="mask-filter-wrap dropdown">
+      <div class="my-favorite" [class.active]="currentList === 'favorite'" (click)="showFavorite()">
+        <i class="fas fa-star"></i>
+      </div>
       <span>需求口罩選擇：</span>
       <div class="mask-filter">
         <div (click)="maskFilterToggle()" class="dropbtn">
@@ -36,16 +40,43 @@
   <div class="search-result-container">
 
     <div class="w100 text-align-center" *ngIf="errorStr !== ''">{{errorStr}}</div>
-    <div class="w100 text-align-center" *ngIf="resultList.length !== 0">
-      共{{resultList.length}}筆結果 </div>
 
-    <ng-container *ngFor="let item of resultList">
+    <ng-container *ngIf="currentList === 'all'">
+      <ng-container [ngTemplateOutlet]="resultHeading" [ngTemplateOutletContext]="{item:resultList.length}"></ng-container>
+      <ng-container *ngFor="let item of resultList">
+        <ng-container [ngTemplateOutlet]="pharmacyList" [ngTemplateOutletContext]="{item:item}"></ng-container>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="currentList === 'favorite'">
+      <ng-container [ngTemplateOutlet]="resultHeading" [ngTemplateOutletContext]="{item:allFavoriteList.length}"></ng-container>
+      <ng-container *ngFor="let item of allFavoriteList">
+        <ng-container [ngTemplateOutlet]="pharmacyList" [ngTemplateOutletContext]="{item:item}"></ng-container>
+      </ng-container>
+    </ng-container>
+
+
+    <ng-template #resultHeading let-dataLength="item">
+      <div class="w100 text-align-center" *ngIf="dataLength !== 0">
+        <ng-container *ngIf="currentList === 'favorite'; else allHeading">
+          我關注的藥局
+        </ng-container>
+        <ng-template #allHeading>全部</ng-template>
+        共{{dataLength}}筆結果 </div>
+    </ng-template>
+
+    <ng-template #pharmacyList let-item="item">
       <div class="result-wrap"
         (click)="goTarget(item.geometry.coordinates[1],item.geometry.coordinates[0])">
-        <div class="title"> {{item.properties.name}} </div>
+        <div class="title">
+          <i class="result-star" [ngClass]="favoriteCheck(item.properties.id)"
+            (click)="toggleFavorite(item.properties.id)"></i>
+          {{item.properties.name}}
+        </div>
 
         <div class="details">
-          <div><i class="fas fa-map-marker-alt"></i> {{item.properties.name}}
+          <div>
+            <i class="fas fa-map-marker-alt"></i> {{item.properties.name}}
           </div>
           <div><i class="fas fa-phone-alt"></i> {{item.properties.address}}
           </div>
@@ -67,6 +98,7 @@
         </div>
 
       </div>
-    </ng-container>
+    </ng-template>
+
   </div>
 </div>
