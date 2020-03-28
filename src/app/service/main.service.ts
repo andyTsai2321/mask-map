@@ -58,11 +58,10 @@ export class MainService {
 
   // favorite cookie start
   getFavoriteCookie() {
-    let tmp;
-    tmp = this.getCookie('Favorite_');
+    const tmp = this.getCookie('Favorite_');
     const arr = tmp.split('@');
     const newArray = [];
-
+    console.log(tmp)
     for (let i = 0; i < arr.length; i++) {
       const key = arr[i];
       if (key) {
@@ -73,18 +72,40 @@ export class MainService {
   }
 
   getCookie(name) {
-    let saveName = name + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1);
+    const saveName = name + '=';
+    const allCookieArray = document.cookie.split(';');
+    let result;
+    allCookieArray.forEach(item => {
+
+      while (item.charAt(0) === ' ') {
+        item = item.substring(1);
       }
-      if (c.indexOf(saveName) === 0) {
-        return c.substring(saveName.length, c.length);
+
+      // 找到favorite cookie
+      if (item.indexOf(saveName) === 0) {
+        // 只取id部分
+        result = item.substring(saveName.length, item.length);
       }
-    }
-    return '';
+
+    });
+
+    // for (var i = 0; i < allCookieArray.length; i++) {
+    //   let item= allCookieArray[i];
+
+    //   while (item.charAt(0) === ' ') {
+    //     item = item.substring(1);
+    //   }
+
+    //   // 找到favorite cookie
+    //   if (item.includes(saveName)) {
+    //     // 只取id部分
+    //     return item.substring(saveName.length, c.length);
+    //   }
+
+    // }
+
+    // return '';
+    return result ? result : '';
   }
 
   setCookie(key, value) {
